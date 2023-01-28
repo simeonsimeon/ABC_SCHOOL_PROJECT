@@ -8,22 +8,26 @@ import { useContext } from 'react';
 import './Table.css'
 export const Table = () => {
   
-    
+    const [search,setsearch] = useState([])
     const Navigate = useNavigate();
     const { state, dispatch } = useContext(Context);
     
-    
     const [findSearchcode,setfindSearchcode] = useState('')
+     var findCode;
+    
     const Search = e => {
         setfindSearchcode(e.target.value)
     }
-    const [isActive,setisActive] =useState(false);
-    //    setisActive(state.data?true:false)
     
     const onCLickSearch  = () => {
-        const search = [...state.data];
+        
         console.log(search);
+        findCode = search.findIndex((item)=>item.code == findSearchcode);
+        console.log(search[findCode].name);
+        
+        
     }
+    
     const aDD = () => {
         Navigate('/Form')
     }
@@ -100,6 +104,7 @@ export const Table = () => {
                     </div>
                 </div>
             </div>
+       
         </div>
     )
 }
